@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sherikoastopenpe.github.io/cnweb-i-game-com-cn/sitemap.xml
