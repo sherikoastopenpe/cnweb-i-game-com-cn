@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>炸金花 · 产品说明 | GoldenFlower</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(160deg, #fce4b8 0%, #f8d39c 30%, #f2b981 70%, #eb9c6b 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.6;
+        }
+
+        .card {
+            max-width: 960px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 40px 40px 32px 32px;
+            box-shadow: 0 20px 40px rgba(140, 80, 30, 0.18), 0 8px 20px rgba(0, 0, 0, 0.06);
+            padding: 2.8rem 2.5rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 1.2rem 0.8rem; }
+            .card { padding: 1.8rem 1.2rem; border-radius: 28px; }
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2.2rem;
+            padding-bottom: 1.6rem;
+            border-bottom: 1px solid rgba(210, 150, 90, 0.25);
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #582d0e;
+            background: linear-gradient(135deg, #7a3e1a, #a35f2b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #6f4528;
+            background: rgba(235, 175, 110, 0.2);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-weight: 450;
+        }
+
+        .summary {
+            background: #fef5e9;
+            padding: 1.6rem 2rem;
+            border-radius: 28px;
+            margin-bottom: 2.2rem;
+            border-left: 5px solid #d9823e;
+            font-size: 1.05rem;
+            color: #3b2516;
+        }
+
+        .summary strong {
+            color: #914d1f;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0 1.8rem;
+        }
+
+        @media (max-width: 640px) {
+            .grid-2col { grid-template-columns: 1fr; }
+        }
+
+        .feature-block {
+            background: #faf3ea;
+            border-radius: 24px;
+            padding: 1.5rem 1.4rem;
+            transition: transform 0.1s ease;
+        }
+
+        .feature-block h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #6b3d1b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .feature-block p {
+            font-size: 0.95rem;
+            color: #3f2c1c;
+        }
+
+        .use-scenario {
+            background: #faf3ea;
+            border-radius: 24px;
+            padding: 1.5rem 1.4rem;
+            margin: 1.8rem 0;
+        }
+
+        .use-scenario h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #6b3d1b;
+            margin-bottom: 0.4rem;
+        }
+
+        .use-scenario ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.2rem;
+            margin-top: 0.6rem;
+        }
+
+        .use-scenario li {
+            background: #e7d6c4;
+            padding: 0.2rem 1rem 0.2rem 1.8rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #3e2a19;
+            position: relative;
+        }
+
+        .use-scenario li::before {
+            content: "▸";
+            position: absolute;
+            left: 0.6rem;
+            color: #a75f2b;
+        }
+
+        .faq-mini {
+            background: #fff8f0;
+            border-radius: 24px;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 0 1.5rem;
+            border: 1px solid #eddac9;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.5rem;
+            border-bottom: 1px dashed #dac1ad;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 550;
+            color: #623418;
+            cursor: pointer;
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini p {
+            margin: 0.4rem 0 0 0.8rem;
+            font-size: 0.92rem;
+            color: #3f2e1d;
+        }
+
+        .link-sentence {
+            background: #ffffffd9;
+            border-radius: 60px;
+            padding: 1rem 1.8rem;
+            text-align: center;
+            margin: 1.6rem 0 0.4rem;
+            border: 1px solid #d9b48b;
+            font-size: 1.05rem;
+            color: #3b2616;
+        }
+
+        .link-sentence a {
+            color: #964d1c;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #d6985e;
+            padding: 0 0.2rem;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .link-sentence a:hover {
+            background: #f5dbc0;
+            border-bottom-color: #9a4f1b;
+            border-radius: 4px;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.82rem;
+            color: #785c44;
+            text-align: center;
+            border-top: 1px solid #e7d3be;
+            padding-top: 1.2rem;
+        }
+
+        .tagline {
+            display: inline-block;
+            background: #dab697;
+            color: #2f1c0e;
+            font-size: 0.75rem;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            margin-top: 0.4rem;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="hero">
+        <h1>炸金花 · 牌局简析</h1>
+        <div class="sub">规则 · 策略 · 场景</div>
+    </div>
+
+    <div class="summary">
+        <strong>快速识别：</strong> 这是一个围绕经典纸牌游戏「炸金花」提供信息与规则说明的站点。内容聚焦比牌逻辑、牌型强度、基本概率与常见玩法变体，适合希望系统了解游戏结构的玩家参考。不涉及现金或实物对赌，仅作为规则与策略的知识梳理。
+    </div>
+
+    <div class="grid-2col">
+        <div class="feature-block">
+            <h3>📋 牌型速查</h3>
+            <p>豹子、同花顺、金花、顺子、对子、散牌…… 按概率与大小排列，附带简明比牌逻辑。无需记忆复杂表格，页面内直接对照。</p>
+        </div>
+        <div class="feature-block">
+            <h3>⚖️ 比牌流程</h3>
+            <p>从发牌到比牌、弃牌、开牌，每个环节都有文字说明。支持「闷牌」「比牌」「跟注」等常见动作的含义梳理，降低新手门槛。</p>
+        </div>
+        <div class="feature-block">
+            <h3>📊 概率参考</h3>
+            <p>不同牌型出现的理论概率及实战中常见的组合分布。数据基于标准 52 张牌，不包含花牌或变种。</p>
+        </div>
+        <div class="feature-block">
+            <h3>🧩 变体说明</h3>
+            <p>简要列举民间常见的特殊规则：喜钱、235 吃豹子、底注封顶等。标注常见程度，非官方标准，仅作信息汇编。</p>
+        </div>
+    </div>
+
+    <div class="use-scenario">
+        <h3>🃏 典型使用场景</h3>
+        <ul>
+            <li>家庭或朋友聚会前快速复习规则</li>
+            <li>了解不同地方变体的差异</li>
+            <li>查阅牌型大小顺序与概率</li>
+            <li>对比「闷牌」与「看牌」的决策逻辑</li>
+        </ul>
+    </div>
+
+    <div class="faq-mini">
+        <details>
+            <summary>这个网站有在线对局功能吗？</summary>
+            <p>没有。网站只提供规则说明、牌型汇总与策略常识，不含任何游戏入口或模拟器。如果你希望实际体验，可以自行寻找合适的线下牌友或合规平台。</p>
+        </details>
+        <details>
+            <summary>内容是否确保完全准确？</summary>
+            <p>我们尽量参考通用规则整理，但炸金花在不同地区存在规则差异。建议以当地通行规则为准。页面内容仅供学习与交流，不构成权威指导。</p>
+        </details>
+        <details>
+            <summary>是否有现金或积分游戏？</summary>
+            <p>没有。本网站不涉及任何形式的真实货币、虚拟货币或积分交易。所有内容均为纸牌规则与策略的知识性介绍。</p>
+        </details>
+    </div>
+
+    <div class="link-sentence">
+        如果你希望了解规则详情或查阅牌型对照，可查看 <a href="https://www-goldenflower.com">炸金花</a> 的主要页面，内有更完整的分类与解释。
+    </div>
+
+    <div class="footer-note">
+        <span>信息汇编 · 非官方版本</span><br>
+        <span class="tagline">仅供学习与交流</span>
+    </div>
+</div>
+</body>
+</html>
